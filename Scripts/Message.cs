@@ -138,7 +138,13 @@ namespace TC
         /// <returns>true:成功 false:失敗</returns>
         public static bool Send(string key, params object[] args)
         {
-            return SendInternal(key);
+            if (SendInternal(key))
+            {
+                Functions[key].DynamicInvoke(args);
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>
