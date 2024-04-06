@@ -34,5 +34,5 @@ int Method(Vector3 position) { return 0; }
 ```csharp
 Message.Send("Method", args...);
 var result = Message.Send<int>("Method", args...);
-var result = await Message.SendAsync("Method", args...);
+await Message.SendAsync("Method", args...);
 ```
