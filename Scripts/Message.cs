@@ -10,13 +10,11 @@ namespace TC
     /// </summary>
     public class Message : MonoBehaviour
     {
-        public static Message I;
         private static readonly Dictionary<string, Delegate> Functions = new();
 
-        private void Awake()
+        private void OnDestroy()
         {
             Functions.Clear();
-            I = this;
         }
 
         /// <summary>
