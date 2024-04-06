@@ -1,0 +1,9 @@
+{
+    "name": "com.tik-choco.message",
+    "version": "1.0.0",
+    "displayName": "TC Message",
+    "author": { "name": "tik-choco" },
+    "description": "",
+    "unity": "2022.3", 
+    "dependencies": {}
+}
