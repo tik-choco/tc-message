@@ -1,3 +1,3 @@
 ```
-https://github.com/tik-choco/tc-online
+https://github.com/tik-choco/tc-message
 ```
