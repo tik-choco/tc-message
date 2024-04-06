@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3960218863811381660}
   - component: {fileID: 7975282801645918255}
   m_Layer: 0
-  m_Name: GMMessage
+  m_Name: TCMessage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
