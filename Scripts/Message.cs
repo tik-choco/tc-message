@@ -82,7 +82,7 @@ namespace TC
         /// </summary>
         /// <param name="key"></param>
         /// <param name="function">ここでは「メソッド」を入力してください</param>
-        public static void Subscribe<T>(string key, Func<T> function) where T : class
+        public static void Subscribe<T>(string key, Func<T> function)
         {
             AddFunction(key, function);
         }
@@ -92,7 +92,7 @@ namespace TC
         /// </summary>
         /// <param name="key"></param>
         /// <param name="function">ここでは「メソッド」を入力してください</param>
-        public static void Subscribe<T1, T2>(string key, Func<T1, T2> function) where T2 : class
+        public static void Subscribe<T1, T2>(string key, Func<T1, T2> function)
         {
             AddFunction(key, function);
         }
@@ -102,7 +102,7 @@ namespace TC
         /// </summary>
         /// <param name="key"></param>
         /// <param name="function">ここでは「メソッド」を入力してください</param>
-        public static void Subscribe<T1, T2, T3>(string key, Func<T1, T2, T3> function) where T3 : class
+        public static void Subscribe<T1, T2, T3>(string key, Func<T1, T2, T3> function)
         {
             AddFunction(key, function);
         }
@@ -112,7 +112,7 @@ namespace TC
         /// </summary>
         /// <param name="key"></param>
         /// <param name="function">ここでは「メソッド」を入力してください</param>
-        public static void Subscribe<T1, T2, T3, T4>(string key, Func<T1, T2, T3, T4> function) where T4 : class
+        public static void Subscribe<T1, T2, T3, T4>(string key, Func<T1, T2, T3, T4> function)
         {
             AddFunction(key, function);
         }
