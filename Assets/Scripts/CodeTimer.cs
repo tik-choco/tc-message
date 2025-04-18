@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TC
+namespace TC.Util
 {
     /// <summary>
     /// C#の処理時間を計測する機能
@@ -32,7 +32,7 @@ namespace TC
             if (!TimeDict.TryGetValue(key, out var sw)) return;
             sw.Stop();
             var ts = sw.Elapsed;
-            Logger.Log($"<color=#ffa500>{key}</color> <color=#7af6b4>実行時間:</color> <b>{ts.TotalMilliseconds}ms</b>");
+            Logger.Info($"<color=#ffa500>{key}</color> <color=#7af6b4>実行時間:</color> <b>{ts.TotalMilliseconds}ms</b>");
             TimeDict.Remove(key);
 #endif
         }
