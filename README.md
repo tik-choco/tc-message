@@ -3,11 +3,6 @@ Unityで、message-driven processing（メッセージ駆動処理）を実現�
 
 
 ## Installation 
-本Packageは、UniTaskが使用されています。
-事前にImportしてください。
-```
-https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask
-```
 
 UPM Package
 
@@ -16,23 +11,22 @@ https://github.com/tik-choco/tc-message.git
 ```
 
 ## Usage
-- Prefabs/TCMessage をScene上に配置
 
 登録
 ```csharp
-Message.Subscribe("○○", Method);
+Message.Register("○○", Method);
 void Method() {}
 
-Message.Subscribe<Vector3>("○○", Method);
+Message.Register<Vector3>("○○", Method);
 void Method(Vector3 position) {}
 
-Message.Subscribe<Vector3, int>("○○", Method);
+Message.Register<Vector3, int>("○○", Method);
 int Method(Vector3 position) { return 0; }
 ```
 
 呼び出し
 ```csharp
-Message.Send("Method", args...);
-var result = Message.Send<int>("Method", args...);
-await Message.SendAsync("Method", args...);
+Message.Call("Method", args...);
+var result = Message.Call<int>("Method", args...);
+await Message.CallAsync("Method", args...);
 ```
