@@ -7,6 +7,7 @@ namespace TC
     public class Logger
     {
         public static Level LogLevel = Level.Info;
+        public static bool UseJsonFormat = false;
 
         public enum Level
         {
@@ -37,6 +38,24 @@ namespace TC
 
         private static readonly LogFormat LOGFormat = new();
 
+        private static string Format(Level level, object message, string filePath, int lineNumber)
+        {
+            return UseJsonFormat
+                ? FormatJson(level, message, filePath, lineNumber)
+                : FormatString(level, message, filePath, lineNumber);
+        }
+
+        private static string FormatString(
+            Level level,
+            object message,
+            string filePath,
+            int lineNumber)
+        {
+            return $"{GetLevelText(level)} " +
+                   $"{message} " +
+                   $"{ShortenPath(filePath)}:{lineNumber} ";
+        }
+
         private static string FormatJson(
             Level level,
             object message,
@@ -44,10 +63,10 @@ namespace TC
             int lineNumber)
         {
             LOGFormat.Set(
-                timestamp:DateTime.UtcNow.ToString("o"),
+                timestamp:DateTime.Now.ToString("o"),
                 level:GetLevelText(level),
-                caller:$"{ShortenPath(filePath)}:{lineNumber}",
-                message:message?.ToString()
+                message:message?.ToString(),
+                caller:$"{ShortenPath(filePath)}:{lineNumber}"
             );
             return JsonUtility.ToJson(LOGFormat);
         }
@@ -65,7 +84,7 @@ namespace TC
                 case Level.Error:
                     return "<color=#ffb6b7>ERROR</color>";
                 case Level.Fatal:
-                    return "<color=#c8c8ff>FATAL</color>";
+                    return "<color=#ff64ff>FATAL</color>";
                 default:
                     return "";
             }
@@ -91,7 +110,7 @@ namespace TC
             [CallerLineNumber] int line = 0)
         {
             if (ShouldLog(Level.Info))
-                UnityEngine.Debug.Log(FormatJson(Level.Info, message, file, line));
+                UnityEngine.Debug.Log(Format(Level.Info, message, file, line));
         }
 
         public static void Debug(object message,
@@ -99,7 +118,7 @@ namespace TC
             [CallerLineNumber] int line = 0)
         {
             if (ShouldLog(Level.Debug))
-                UnityEngine.Debug.Log(FormatJson(Level.Debug, message, file, line));
+                UnityEngine.Debug.Log(Format(Level.Debug, message, file, line));
         }
 
         public static void Warning(object message,
@@ -107,7 +126,7 @@ namespace TC
             [CallerLineNumber] int line = 0)
         {
             if (ShouldLog(Level.Warning))
-                UnityEngine.Debug.LogWarning(FormatJson(Level.Warning, message, file, line));
+                UnityEngine.Debug.LogWarning(Format(Level.Warning, message, file, line));
         }
 
         public static void Error(object message,
@@ -115,7 +134,7 @@ namespace TC
             [CallerLineNumber] int line = 0)
         {
             if (ShouldLog(Level.Error))
-                UnityEngine.Debug.LogError(FormatJson(Level.Error, message, file, line));
+                UnityEngine.Debug.LogError(Format(Level.Error, message, file, line));
         }
 
         public static void Fatal(object message,
@@ -124,7 +143,7 @@ namespace TC
         {
             if (ShouldLog(Level.Fatal))
             {
-                UnityEngine.Debug.LogError(FormatJson(Level.Fatal, message, file, line));
+                UnityEngine.Debug.LogError(Format(Level.Fatal, message, file, line));
             }
         }
     }
