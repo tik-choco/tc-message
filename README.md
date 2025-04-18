@@ -7,7 +7,7 @@ Unityで、message-driven processing（メッセージ駆動処理）を実現�
 UPM Package
 
 ```
-https://github.com/tik-choco/tc-message.git
+https://github.com/tik-choco/tc-message.git?path=/Assets/
 ```
 
 ## Usage
