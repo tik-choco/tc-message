@@ -30,7 +30,7 @@ namespace TC
         private static void ClearFunctions()
         {
             Functions.Clear();
-            Logger.Debug($"<color=#ff0000>[Functions Cleared]</color>");
+            Logger.Debug($"[Functions Cleared]");
         }
 
         #region Register
