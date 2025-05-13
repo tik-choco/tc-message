@@ -11,8 +11,27 @@ namespace TC
     public class Message : IDisposable
     {
         private static readonly Dictionary<string, Delegate> Functions = new();
+        private static bool _isRegisteredToQuitEvent = false;
 
+        static Message()
+        {
+            RegisterToQuitEvent();
+        }
 
+        private static void RegisterToQuitEvent()
+        {
+            if (!_isRegisteredToQuitEvent)
+            {
+                Application.quitting += ClearFunctions;
+                _isRegisteredToQuitEvent = true;
+            }
+        }
+
+        private static void ClearFunctions()
+        {
+            Functions.Clear();
+            Logger.Debug($"<color=#ff0000>[Functions Cleared]</color>");
+        }
 
         #region Register
         public static void Register(string key, Action function)
